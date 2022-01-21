@@ -1,19 +1,12 @@
 package main
 
-import "fmt"
-
-func FibonacciSequence() func() int {
-	curr := 0
-	next := 1
-
-	return func() int {
-		curr, next = next, next+curr
-		return curr
-	}
-}
+import (
+	"euler"
+	"fmt"
+)
 
 func Euler2() int {
-	nextFib := FibonacciSequence()
+	nextFib := euler.FibonacciGenerator()
 	currFib := nextFib()
 	sum := 0
 	for currFib < 4_000_000 {

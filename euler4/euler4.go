@@ -1,23 +1,10 @@
 package main
 
 import (
+	"euler"
 	"fmt"
 	"sort"
-	"strconv"
 )
-
-func IsPalindrome(num int) bool {
-	numstr := strconv.Itoa(num)
-	runes := []rune(numstr) // can I access the characters directly?
-
-	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
-		if runes[i] != runes[j] {
-			return false
-		}
-	}
-
-	return true
-}
 
 func Euler4() int {
 	products := make([]int, 0)
@@ -31,7 +18,7 @@ func Euler4() int {
 	sort.Sort(sort.Reverse(sort.IntSlice(products)))
 
 	for i := 0; i < len(products); i++ {
-		if IsPalindrome(products[i]) {
+		if euler.IsPalindrome(products[i]) {
 			return products[i]
 		}
 	}
