@@ -43,3 +43,29 @@ func TestIsPalindrome(t *testing.T) {
 		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
 	}
 }
+
+func TestReverse(t *testing.T) {
+	if reversed, expected := Reverse(1), 1; reversed != expected {
+		t.Fatalf("expected %d, was %d", expected, reversed)
+	}
+
+	if reversed, expected := Reverse(10), 1; reversed != expected {
+		t.Fatalf("expected %d, was %d", expected, reversed)
+	}
+
+	if reversed, expected := Reverse(12), 21; reversed != expected {
+		t.Fatalf("expected %d, was %d", expected, reversed)
+	}
+
+	if reversed, expected := Reverse(33), 33; reversed != expected {
+		t.Fatalf("expected %d, was %d", expected, reversed)
+	}
+
+	if reversed, expected := Reverse(504), 405; reversed != expected {
+		t.Fatalf("expected %d, was %d", expected, reversed)
+	}
+
+	if reversed, expected := Reverse(1234), 4321; reversed != expected {
+		t.Fatalf("expected %d, was %d", expected, reversed)
+	}
+}
