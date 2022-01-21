@@ -52,12 +52,12 @@ func CachedPrimeGenerator() func() int {
 			for true {
 				isPrime := true
 				factorMax := int(math.Sqrt(float64(curr)))
-				for i := 0; i < len(primes); i++ {
-					if primes[i] > factorMax {
+				for _, factor := range primes {
+					if factor > factorMax {
 						break
 					}
 
-					if curr%primes[i] == 0 {
+					if curr%factor == 0 {
 						isPrime = false
 						break
 					}
