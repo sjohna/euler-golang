@@ -1,4 +1,4 @@
-package euler
+package utilities
 
 func GCD(a int, b int) int {
 	if a < b {

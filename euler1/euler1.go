@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package euler1
 
 func Euler1_Loop() int {
 	sum := 0
@@ -10,8 +8,4 @@ func Euler1_Loop() int {
 		}
 	}
 	return sum
-}
-
-func main() {
-	fmt.Println(Euler1_Loop())
 }

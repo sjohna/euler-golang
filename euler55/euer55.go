@@ -1,7 +1,7 @@
-package main
+package euler55
 
 import (
-	"euler"
+	"euler/utilities"
 	"fmt"
 )
 
@@ -9,8 +9,8 @@ func IsLychrel(n int) bool {
 	currVal := n
 
 	for i := 0; i < 50; i++ {
-		currVal = currVal + euler.Reverse(currVal)
-		if euler.IsPalindrome(currVal) {
+		currVal = currVal + utilities.Reverse(currVal)
+		if utilities.IsPalindrome(currVal) {
 			return false
 		}
 	}

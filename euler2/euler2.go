@@ -1,12 +1,11 @@
-package main
+package euler2
 
 import (
-	"euler"
-	"fmt"
+	"euler/utilities"
 )
 
 func Euler2() int {
-	nextFib := euler.FibonacciGenerator()
+	nextFib := utilities.FibonacciGenerator()
 	currFib := nextFib()
 	sum := 0
 	for currFib < 4_000_000 {
@@ -17,8 +16,4 @@ func Euler2() int {
 	}
 
 	return sum
-}
-
-func main() {
-	fmt.Println(Euler2())
 }

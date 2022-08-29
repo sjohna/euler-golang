@@ -1,13 +1,12 @@
-package main
+package euler3
 
 import (
-	"euler"
-	"fmt"
+	"euler/utilities"
 )
 
 func Euler3() int {
 	curr := 600851475143
-	nextPrime := euler.PrimeGenerator()
+	nextPrime := utilities.PrimeGenerator()
 	var currPrime int
 
 	for curr > 1 {
@@ -18,8 +17,4 @@ func Euler3() int {
 	}
 
 	return currPrime
-}
-
-func main() {
-	fmt.Println(Euler3())
 }

@@ -1,4 +1,4 @@
-package euler
+package utilities
 
 func FibonacciGenerator() func() int {
 	curr := 0

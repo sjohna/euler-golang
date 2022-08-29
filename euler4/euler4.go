@@ -1,8 +1,7 @@
-package main
+package euler4
 
 import (
-	"euler"
-	"fmt"
+	"euler/utilities"
 	"sort"
 )
 
@@ -18,14 +17,10 @@ func Euler4() int {
 	sort.Sort(sort.Reverse(sort.IntSlice(products)))
 
 	for i := 0; i < len(products); i++ {
-		if euler.IsPalindrome(products[i]) {
+		if utilities.IsPalindrome(products[i]) {
 			return products[i]
 		}
 	}
 
 	return -1
-}
-
-func main() {
-	fmt.Println(Euler4())
 }

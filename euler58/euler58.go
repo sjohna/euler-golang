@@ -1,7 +1,7 @@
-package main
+package euler58
 
 import (
-	"euler"
+	"euler/utilities"
 	"fmt"
 )
 
@@ -14,7 +14,7 @@ func main() {
 	for true {
 		for i := 0; i < 4; i++ {
 			currNum += layer
-			if euler.IsPrime(currNum) {
+			if utilities.IsPrime(currNum) {
 				primesOnDiagonal++
 			}
 		}
