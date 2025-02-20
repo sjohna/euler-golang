@@ -5,6 +5,12 @@ import (
 	"sort"
 )
 
+/*
+https://projecteuler.net/problem=4
+
+Find the largest palindrome make from the product of two 3-digit numbers.
+*/
+
 func Euler4() int {
 	products := make([]int, 0)
 

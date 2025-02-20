@@ -5,12 +5,22 @@ import (
 	"strconv"
 )
 
+/*
+https://projecteuler.net/problem=40
+
+Champernowne's constant is the number whose decimal representation is the concatenation of the positive integers:
+
+0.12345678910111213...
+
+What is the product of the (10^n)th digits of Champernowne's constant, for n in 0..6
+*/
+
 func ChampernowneDigit(n int) int {
 	lengthSoFar := 0
 	numsInNextPowerBlock := 9
 	length := 1
 
-	for true {
+	for {
 		lengthOfNextBlock := numsInNextPowerBlock * length
 		if n <= lengthSoFar+lengthOfNextBlock {
 			offsetIntoBlock := n - lengthSoFar
@@ -39,11 +49,9 @@ func ChampernowneDigit(n int) int {
 			length++
 		}
 	}
-
-	return -1
 }
 
-func main() {
+func Euler40() {
 	product := 1
 	for i := 1; i <= 1000000; i *= 10 {
 		product *= ChampernowneDigit(i)

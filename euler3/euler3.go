@@ -4,6 +4,12 @@ import (
 	"euler/utilities"
 )
 
+/*
+https://projecteuler.net/problem=3
+
+What is the largest prime factor of 600851475143?
+*/
+
 func Euler3() int {
 	curr := 600851475143
 	nextPrime := utilities.PrimeGenerator()

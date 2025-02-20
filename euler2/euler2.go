@@ -4,6 +4,12 @@ import (
 	"euler/utilities"
 )
 
+/*
+https://projecteuler.net/problem=2
+
+Find the sum of the even-valued terms of the Fibonacci sequence below four million.
+*/
+
 func Euler2() int {
 	nextFib := utilities.FibonacciGenerator()
 	currFib := nextFib()
