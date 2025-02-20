@@ -28,6 +28,15 @@ func Default[T any]() T {
 	return ret
 }
 
+func (g Generator[T]) Count() int {
+	count := 0
+	for _, ok := g(); ok; _, ok = g() {
+		count++
+	}
+
+	return count
+}
+
 func (g Generator[T]) Reduce(reduction Reduction[T], initial T) T {
 	val := initial
 	for next, ok := g(); ok; next, ok = g() {

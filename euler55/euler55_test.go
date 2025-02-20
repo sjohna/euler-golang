@@ -15,6 +15,10 @@ func TestEuler55(t *testing.T) {
 			"Loop",
 			Loop,
 		},
+		{
+			"Generators",
+			Generators,
+		},
 	}
 
 	for _, tc := range tests {

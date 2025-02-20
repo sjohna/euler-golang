@@ -44,3 +44,10 @@ func Loop() int {
 
 	return numLychrel
 }
+
+func Generators() int {
+	return utilities.NaturalNumbers().
+		TakeWhile(func(n int) bool { return n < 10000 }).
+		Filter(IsLychrel).
+		Count()
+}
