@@ -12,7 +12,7 @@ What is the largest prime factor of 600851475143?
 
 func GeneratorWithLoop() int {
 	curr := 600851475143
-	nextPrime := utilities.PrimeGenerator()
+	nextPrime := utilities.PrimeGenerator().Infinite()
 	var currPrime int
 
 	for curr > 1 {

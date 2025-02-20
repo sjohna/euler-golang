@@ -11,7 +11,7 @@ Find the sum of the even-valued terms of the Fibonacci sequence below four milli
 */
 
 func GeneratorWithLoop() int {
-	nextFib := utilities.FibonacciGenerator()
+	nextFib := utilities.FibonacciSequence().Infinite()
 	currFib := nextFib()
 	sum := 0
 	for currFib < 4_000_000 {

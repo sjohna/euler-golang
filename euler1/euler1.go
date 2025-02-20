@@ -1,5 +1,7 @@
 package euler1
 
+import "euler/utilities"
+
 /*
 https://projecteuler.net/problem=1
 
@@ -14,4 +16,11 @@ func Loop() int {
 		}
 	}
 	return sum
+}
+
+func Generators() int {
+	return utilities.NaturalNumbers().
+		TakeWhile(func(n int) bool { return n < 1000 }).
+		Filter(func(n int) bool { return n%3 == 0 || n%5 == 0 }).
+		Reduce(utilities.Sum, 0)
 }

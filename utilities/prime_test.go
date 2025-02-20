@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func testPrimeGeneratorFirstValues(t *testing.T, gen func() int) {
+func testPrimeGeneratorFirstValues(t *testing.T, gen Generator[int]) {
 	expected := []int{2, 3, 5, 7, 11, 13}
 	got := TakeN(gen, 6)
 
@@ -14,7 +14,7 @@ func testPrimeGeneratorFirstValues(t *testing.T, gen func() int) {
 	}
 }
 
-func testPrimeGenerator100th(t *testing.T, gen func() int) {
+func testPrimeGenerator100th(t *testing.T, gen Generator[int]) {
 	expected := 541
 	got := Nth(gen, 100)
 
@@ -23,7 +23,7 @@ func testPrimeGenerator100th(t *testing.T, gen func() int) {
 	}
 }
 
-func testPrimeGenerator1000th(t *testing.T, gen func() int) {
+func testPrimeGenerator1000th(t *testing.T, gen Generator[int]) {
 	expected := 7919
 	got := Nth(gen, 1000)
 

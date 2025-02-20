@@ -2,13 +2,13 @@ package utilities
 
 import "math"
 
-func PrimeGenerator() func() int {
+func PrimeGenerator() Generator[int] {
 	curr := 2
 
-	return func() int {
+	return func() (int, bool) {
 		if curr == 2 {
 			curr = 3
-			return 2
+			return 2, true
 		} else {
 			for {
 				if curr%2 == 0 {
@@ -35,19 +35,19 @@ func PrimeGenerator() func() int {
 
 		ret := curr
 		curr += 2
-		return ret
+		return ret, true
 	}
 }
 
-func CachedPrimeGenerator() func() int {
+func CachedPrimeGenerator() Generator[int] {
 	curr := 2
 	primes := make([]int, 0)
 
-	return func() int {
+	return func() (int, bool) {
 		if curr == 2 {
 			curr = 3
 			primes = append(primes, 2)
-			return 2
+			return 2, true
 		} else {
 			for {
 				isPrime := true
@@ -75,7 +75,7 @@ func CachedPrimeGenerator() func() int {
 		ret := curr
 		curr += 2
 		primes = append(primes, ret)
-		return ret
+		return ret, true
 	}
 }
 
