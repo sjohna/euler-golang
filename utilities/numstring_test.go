@@ -3,69 +3,50 @@ package utilities
 import "testing"
 
 func TestIsPalindrome(t *testing.T) {
-	if val, expected := 1, true; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
+	type test struct {
+		val  int
+		want bool
 	}
 
-	if val, expected := 11, true; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
+	tests := []test{
+		{1, true},
+		{11, true},
+		{77, true},
+		{303, true},
+		{1221, true},
+		{1234321, true},
+		{10, false},
+		{103, false},
+		{1223, false},
+		{1234521, false},
 	}
 
-	if val, expected := 77, true; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
-	}
-
-	if val, expected := 303, true; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
-	}
-
-	if val, expected := 1221, true; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
-	}
-
-	if val, expected := 1234321, true; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
-	}
-
-	if val, expected := 10, false; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
-	}
-
-	if val, expected := 103, false; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
-	}
-
-	if val, expected := 1223, false; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
-	}
-
-	if val, expected := 1234351, false; IsPalindrome(val) != expected {
-		t.Fatalf("for %d: expected %v, was %v", val, expected, !expected)
+	for _, tc := range tests {
+		if got := IsPalindrome(tc.val); got != tc.want {
+			t.Errorf("IsPalindrome(%d) = %v; want %v", tc.val, got, tc.want)
+		}
 	}
 }
 
 func TestReverse(t *testing.T) {
-	if reversed, expected := Reverse(1), 1; reversed != expected {
-		t.Fatalf("expected %d, was %d", expected, reversed)
+	type test struct {
+		val  int
+		want int
 	}
 
-	if reversed, expected := Reverse(10), 1; reversed != expected {
-		t.Fatalf("expected %d, was %d", expected, reversed)
+	tests := []test{
+		{1, 1},
+		{10, 1},
+		{12, 21},
+		{33, 33},
+		{100, 1},
+		{504, 405},
+		{1234, 4321},
 	}
 
-	if reversed, expected := Reverse(12), 21; reversed != expected {
-		t.Fatalf("expected %d, was %d", expected, reversed)
-	}
-
-	if reversed, expected := Reverse(33), 33; reversed != expected {
-		t.Fatalf("expected %d, was %d", expected, reversed)
-	}
-
-	if reversed, expected := Reverse(504), 405; reversed != expected {
-		t.Fatalf("expected %d, was %d", expected, reversed)
-	}
-
-	if reversed, expected := Reverse(1234), 4321; reversed != expected {
-		t.Fatalf("expected %d, was %d", expected, reversed)
+	for _, tc := range tests {
+		if got := Reverse(tc.val); got != tc.want {
+			t.Errorf("Reverse(%d) = %d; want %d", tc.val, got, tc.want)
+		}
 	}
 }

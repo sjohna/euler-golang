@@ -1,53 +1,47 @@
 package utilities
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
-func TestPrimeGeneratorFirstValues(t *testing.T) {
-	nextPrime := PrimeGenerator()
+func testPrimeGeneratorFirstValues(t *testing.T, gen func() int) {
+	expected := []int{2, 3, 5, 7, 11, 13}
+	got := TakeN(gen, 6)
 
-	if val, expected := nextPrime(), 2; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
-	}
-
-	if val, expected := nextPrime(), 3; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
-	}
-
-	if val, expected := nextPrime(), 5; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
-	}
-
-	if val, expected := nextPrime(), 7; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
-	}
-
-	if val, expected := nextPrime(), 11; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
+	if !reflect.DeepEqual(expected, got) {
+		t.Errorf("First Values: expected %v, got %v", expected, got)
 	}
 }
 
-func TestCachedPrimeGeneratorFirstValues(t *testing.T) {
-	nextPrime := CachedPrimeGenerator()
+func testPrimeGenerator100th(t *testing.T, gen func() int) {
+	expected := 541
+	got := Nth(gen, 100)
 
-	if val, expected := nextPrime(), 2; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
+	if expected != got {
+		t.Errorf("100th Value: expected %v, got %v", expected, got)
 	}
+}
 
-	if val, expected := nextPrime(), 3; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
-	}
+func testPrimeGenerator1000th(t *testing.T, gen func() int) {
+	expected := 7919
+	got := Nth(gen, 1000)
 
-	if val, expected := nextPrime(), 5; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
+	if expected != got {
+		t.Errorf("1000th Value: expected %v, got %v", expected, got)
 	}
+}
 
-	if val, expected := nextPrime(), 7; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
-	}
+func TestPrimeGenerator(t *testing.T) {
+	testPrimeGeneratorFirstValues(t, PrimeGenerator())
+	testPrimeGenerator100th(t, PrimeGenerator())
+	testPrimeGenerator1000th(t, PrimeGenerator())
+}
 
-	if val, expected := nextPrime(), 11; val != expected {
-		t.Fatalf("expected %d, was %d", expected, val)
-	}
+func TestCachedPrimeGenerator(t *testing.T) {
+	testPrimeGeneratorFirstValues(t, CachedPrimeGenerator())
+	testPrimeGenerator100th(t, CachedPrimeGenerator())
+	testPrimeGenerator1000th(t, CachedPrimeGenerator())
 }
 
 func TestIsPrime(t *testing.T) {

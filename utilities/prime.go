@@ -10,7 +10,7 @@ func PrimeGenerator() func() int {
 			curr = 3
 			return 2
 		} else {
-			for true {
+			for {
 				if curr%2 == 0 {
 					curr += 2
 					continue
@@ -49,7 +49,7 @@ func CachedPrimeGenerator() func() int {
 			primes = append(primes, 2)
 			return 2
 		} else {
-			for true {
+			for {
 				isPrime := true
 				factorMax := int(math.Sqrt(float64(curr)))
 				for _, factor := range primes {
