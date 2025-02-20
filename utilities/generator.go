@@ -37,6 +37,18 @@ func (g Generator[T]) Count() int {
 	return count
 }
 
+// Map needs to go to the same type, because Go's type system can't really handle switching the type generically here...
+func (g Generator[T]) Map(mapFunc func(T) T) Generator[T] {
+	return func() (T, bool) {
+		next, ok := g()
+		if !ok {
+			return Default[T](), false
+		}
+
+		return mapFunc(next), ok
+	}
+}
+
 func (g Generator[T]) Reduce(reduction Reduction[T], initial T) T {
 	val := initial
 	for next, ok := g(); ok; next, ok = g() {
@@ -87,3 +99,4 @@ func (g Generator[T]) Infinite() func() T {
 func Sum[T Number](a, b T) T {
 	return a + b
 }
+func Square[T Number](x T) T { return x * x }
