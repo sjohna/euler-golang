@@ -1,9 +1,9 @@
-package euler6
+package euler7
 
 import "testing"
 
-func TestEuler6(t *testing.T) {
-	answer := 25164150
+func TestEuler7(t *testing.T) {
+	answer := 104743
 
 	type test struct {
 		name     string
@@ -12,8 +12,8 @@ func TestEuler6(t *testing.T) {
 
 	tests := []test{
 		{
-			"Generators",
-			Generators,
+			"Generator",
+			Generator,
 		},
 	}
 

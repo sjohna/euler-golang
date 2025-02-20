@@ -4,6 +4,12 @@ package utilities
 type Generator[T any] func() (T, bool)
 type Reduction[T any] func(T, T) T
 
+func Empty[T any]() Generator[T] {
+	return func() (T, bool) {
+		return Default[T](), false
+	}
+}
+
 func TakeN[T comparable](g Generator[T], N int) []T {
 	ret := make([]T, N)
 	for i := 0; i < N; i++ {
@@ -86,6 +92,22 @@ func (g Generator[T]) Filter(cond func(T) bool) Generator[T] {
 			}
 		}
 	}
+}
+
+func (g Generator[T]) Skip(N int) Generator[T] {
+	for i := 0; i < N; i++ {
+		_, ok := g()
+		if !ok {
+			return Empty[T]()
+		}
+	}
+
+	return g
+}
+
+func (g Generator[T]) NextValue() T {
+	next, _ := g()
+	return next
 }
 
 // Infinite allows a generator to be treated as an infinite stream of values, not requiring a check for value available
