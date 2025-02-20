@@ -15,6 +15,10 @@ func TestEuler5(t *testing.T) {
 			"LoopLCMFunction",
 			LoopLCMFunction,
 		},
+		{
+			"GeneratorReduce",
+			GeneratorReduce,
+		},
 	}
 
 	for _, tc := range tests {

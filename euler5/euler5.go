@@ -19,3 +19,7 @@ func LoopLCMFunction() int {
 
 	return lcm
 }
+
+func GeneratorReduce() int {
+	return utilities.NaturalNumbers().TakeWhile(func(n int) bool { return n <= 20 }).Reduce(utilities.LCM, 1)
+}
