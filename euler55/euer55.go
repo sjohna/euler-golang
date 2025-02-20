@@ -2,7 +2,6 @@ package euler55
 
 import (
 	"euler/utilities"
-	"fmt"
 )
 
 /*
@@ -18,7 +17,7 @@ With some numbers, we don't seem to ever get a palindrome, no matter how many it
 We'll consider a number a Lychrel number if, starting from that number, this process does not yield a palindrome within
 50 iterations.
 
-How many numbers under 10,000 are lychrel numbers?
+How many numbers under 10,000 are Lychrel numbers?
 */
 
 func IsLychrel(n int) bool {
@@ -34,7 +33,7 @@ func IsLychrel(n int) bool {
 	return true
 }
 
-func Euler55() {
+func Loop() int {
 	numLychrel := 0
 
 	for i := 0; i < 10000; i++ {
@@ -43,5 +42,5 @@ func Euler55() {
 		}
 	}
 
-	fmt.Println(numLychrel)
+	return numLychrel
 }

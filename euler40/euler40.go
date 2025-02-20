@@ -1,7 +1,6 @@
 package euler40
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -51,11 +50,11 @@ func ChampernowneDigit(n int) int {
 	}
 }
 
-func Euler40() {
+func Basic() int {
 	product := 1
 	for i := 1; i <= 1000000; i *= 10 {
 		product *= ChampernowneDigit(i)
 	}
 
-	fmt.Println(product)
+	return product
 }

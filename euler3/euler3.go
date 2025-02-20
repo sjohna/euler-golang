@@ -10,7 +10,7 @@ https://projecteuler.net/problem=3
 What is the largest prime factor of 600851475143?
 */
 
-func Euler3() int {
+func GeneratorWithLoop() int {
 	curr := 600851475143
 	nextPrime := utilities.PrimeGenerator()
 	var currPrime int

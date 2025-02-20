@@ -2,7 +2,6 @@ package euler58
 
 import (
 	"euler/utilities"
-	"fmt"
 )
 
 /*
@@ -23,7 +22,7 @@ There seem to be a lot of primes on the diagonals (except for the bottom-right, 
 What is the smallest size of this construction where the portion of primes on the diagonals is under 10%?
 */
 
-func Euler58() {
+func Loops() int {
 	numsOnDiagonal := 1 // center
 	currNum := 1
 	layer := 2
@@ -40,8 +39,6 @@ func Euler58() {
 
 		percent := float64(primesOnDiagonal) / float64(numsOnDiagonal)
 
-		fmt.Printf("layer %d: %d/%d (%f)\n", layer, primesOnDiagonal, numsOnDiagonal, percent)
-
 		if percent < .10 {
 			break
 		}
@@ -49,5 +46,5 @@ func Euler58() {
 		layer += 2
 	}
 
-	fmt.Println(layer + 1)
+	return layer + 1
 }
