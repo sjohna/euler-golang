@@ -1,11 +1,11 @@
-package euler12
+package euler22
 
 import (
 	"testing"
 )
 
-func TestEuler12(t *testing.T) {
-	answer := 76576500
+func TestEuler22(t *testing.T) {
+	answer := 871198282
 
 	type test struct {
 		name     string
@@ -14,8 +14,8 @@ func TestEuler12(t *testing.T) {
 
 	tests := []test{
 		{
-			"Generator",
-			Generator,
+			"Loop",
+			Loop,
 		},
 	}
 
