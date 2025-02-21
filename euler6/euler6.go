@@ -9,8 +9,8 @@ What's the difference between the square of the sum and the sum of the squares o
 */
 
 func Generators() int {
-	sumOfSquares := utilities.NaturalNumbers().TakeWhile(func(n int) bool { return n <= 100 }).Map(utilities.Square).Reduce(utilities.Sum, 0)
-	squareOfSum := utilities.Square(utilities.NaturalNumbers().TakeWhile(func(n int) bool { return n <= 100 }).Reduce(utilities.Sum, 0))
+	sumOfSquares := utilities.Range(1, 100).Map(utilities.Square).Reduce(utilities.Sum, 0)
+	squareOfSum := utilities.Square(utilities.Range(1, 100).Reduce(utilities.Sum, 0))
 
 	return squareOfSum - sumOfSquares
 }

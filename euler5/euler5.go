@@ -21,5 +21,5 @@ func LoopLCMFunction() int {
 }
 
 func GeneratorReduce() int {
-	return utilities.NaturalNumbers().TakeWhile(func(n int) bool { return n <= 20 }).Reduce(utilities.LCM, 1)
+	return utilities.Range(1, 20).Reduce(utilities.LCM, 1)
 }

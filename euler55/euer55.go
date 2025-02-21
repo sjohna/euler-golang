@@ -46,8 +46,7 @@ func Loop() int {
 }
 
 func Generators() int {
-	return utilities.NaturalNumbers().
-		TakeWhile(func(n int) bool { return n < 10000 }).
+	return utilities.Range(1, 10000).
 		Filter(IsLychrel).
 		Count()
 }

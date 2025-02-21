@@ -26,7 +26,7 @@ func GeneratorWithLoop() int {
 
 func PureGenerator() int {
 	return utilities.FibonacciSequence().
-		TakeWhile(func(n int) bool { return n < 4_000_000 }).
+		TakeWhile(utilities.LessThan(4_000_000)).
 		Filter(func(n int) bool { return n%2 == 0 }).
 		Reduce(utilities.Sum, 0)
 }

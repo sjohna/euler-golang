@@ -19,8 +19,7 @@ func Loop() int {
 }
 
 func Generators() int {
-	return utilities.NaturalNumbers().
-		TakeWhile(func(n int) bool { return n < 1000 }).
+	return utilities.Range(1, 1000).
 		Filter(func(n int) bool { return n%3 == 0 || n%5 == 0 }).
 		Reduce(utilities.Sum, 0)
 }

@@ -1,5 +1,7 @@
 package utilities
 
+import "cmp"
+
 // Generator returns a stream of values, and whether the value is valid
 type Generator[T any] func() (T, bool)
 type Reduction[T any] func(T, T) T
@@ -129,6 +131,12 @@ func (g Generator[T]) Infinite() func() T {
 	return func() T {
 		next, _ := g()
 		return next
+	}
+}
+
+func LessThan[T cmp.Ordered](N T) func(T) bool {
+	return func(n T) bool {
+		return n < N
 	}
 }
 
