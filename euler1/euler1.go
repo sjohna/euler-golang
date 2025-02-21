@@ -1,6 +1,6 @@
 package euler1
 
-import "euler/utility"
+import utility "euler/utility"
 
 /*
 https://projecteuler.net/problem=1

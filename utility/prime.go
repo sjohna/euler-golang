@@ -97,3 +97,37 @@ func IsPrime(num int) bool {
 
 	return true
 }
+
+// PrimeFactorization returns a map of the multiplicities of each prime in the factorization
+func PrimeFactorization(num int) map[int]int {
+	// this regenerates all the primes again each time. Not ideal
+	primes := CachedPrimeGenerator().Infinite()
+
+	factorization := make(map[int]int)
+	for num > 1 {
+		nextPrime := primes()
+
+		mult := 0
+		for num%nextPrime == 0 {
+			mult += 1
+			num /= nextPrime
+		}
+
+		if mult > 0 {
+			factorization[nextPrime] = mult
+		}
+	}
+
+	return factorization
+}
+
+func TotalFactors(num int) int {
+	factorization := PrimeFactorization(num)
+	total := 1
+
+	for _, mult := range factorization {
+		total *= mult + 1
+	}
+
+	return total
+}

@@ -9,5 +9,5 @@ Find the sum of all the primes below two million.
 */
 
 func Generator() int {
-	return utility.PrimeGenerator().TakeWhile(utility.LessThan(2_000_000)).Reduce(utility.Sum, 0)
+	return utility.CachedPrimeGenerator().TakeWhile(utility.LessThan(2_000_000)).Reduce(utility.Sum, 0)
 }

@@ -9,6 +9,10 @@ func NaturalNumbers() Generator[int] {
 	}
 }
 
+func TriangularNumbers() Generator[int] {
+	return PartialSums(NaturalNumbers())
+}
+
 func FibonacciSequence() Generator[int] {
 	curr := 0
 	next := 1

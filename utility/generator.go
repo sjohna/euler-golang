@@ -1,7 +1,5 @@
 package utility
 
-import "cmp"
-
 // Generator returns a stream of values, and whether the value is valid.
 // Once a generator becomes invalid (i.e. returns false for its second return value), it should never become valid again.
 type Generator[T any] func() (T, bool)
@@ -13,17 +11,29 @@ func Empty[T any]() Generator[T] {
 	}
 }
 
-func TakeN[T comparable](g Generator[T], N int) []T {
-	ret := make([]T, N)
-	for i := 0; i < N; i++ {
-		next, _ := g()
-		ret[i] = next
+func (g Generator[T]) Take(N int) Generator[T] {
+	curr := 0
+
+	return func() (T, bool) {
+		if curr >= N {
+			return Default[T](), false
+		}
+
+		curr++
+		return g()
+	}
+}
+
+func (g Generator[T]) ToSlice() []T {
+	ret := make([]T, 0)
+	for next, ok := g(); ok; next, ok = g() {
+		ret = append(ret, next)
 	}
 
 	return ret
 }
 
-func Nth[T any](g Generator[T], N int) T {
+func (g Generator[T]) Nth(N int) T {
 	for i := 0; i < N-1; i++ {
 		g()
 	}
@@ -127,26 +137,23 @@ func SliceRangeGenerator[T any](slice []T, min, max int) Generator[T] {
 	}
 }
 
+func PartialSums[T Number](g Generator[T]) Generator[T] {
+	sum := Default[T]()
+	return func() (T, bool) {
+		next, ok := g()
+		if !ok {
+			return Default[T](), false
+		}
+
+		sum += next
+		return sum, true
+	}
+}
+
 // Infinite allows a generator to be treated as an infinite stream of values, not requiring a check for value available
 func (g Generator[T]) Infinite() func() T {
 	return func() T {
 		next, _ := g()
 		return next
 	}
-}
-
-func LessThan[T cmp.Ordered](N T) func(T) bool {
-	return func(n T) bool {
-		return n < N
-	}
-}
-
-func Sum[T Number](a, b T) T {
-	return a + b
-}
-func Product[T Number](a, b T) T {
-	return a * b
-}
-func Square[T Number](x T) T {
-	return x * x
 }
