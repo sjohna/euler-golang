@@ -110,6 +110,20 @@ func (g Generator[T]) NextValue() T {
 	return next
 }
 
+func SliceRangeGenerator[T any](slice []T, min, max int) Generator[T] {
+	curr := min
+
+	return func() (T, bool) {
+		if curr > max {
+			return Default[T](), false
+		}
+
+		ret := slice[curr]
+		curr++
+		return ret, true
+	}
+}
+
 // Infinite allows a generator to be treated as an infinite stream of values, not requiring a check for value available
 func (g Generator[T]) Infinite() func() T {
 	return func() T {
@@ -121,4 +135,9 @@ func (g Generator[T]) Infinite() func() T {
 func Sum[T Number](a, b T) T {
 	return a + b
 }
-func Square[T Number](x T) T { return x * x }
+func Product[T Number](a, b T) T {
+	return a * b
+}
+func Square[T Number](x T) T {
+	return x * x
+}

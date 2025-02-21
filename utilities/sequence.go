@@ -18,3 +18,19 @@ func FibonacciSequence() Generator[int] {
 		return curr, true
 	}
 }
+
+// Range a range of integers, inclusive on both ends
+func Range(min, max int) Generator[int] {
+	curr := min
+
+	return func() (int, bool) {
+		if curr > max {
+			return 0, false
+		}
+
+		ret := curr
+		curr++
+
+		return ret, true
+	}
+}
