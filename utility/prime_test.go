@@ -6,8 +6,8 @@ import (
 )
 
 func testPrimeGeneratorFirstValues(t *testing.T, gen Generator[int]) {
-	expected := []int{2, 3, 5, 7, 11, 13}
-	got := gen.Take(6).ToSlice()
+	expected := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
+	got := gen.Take(10).ToSlice()
 
 	if !reflect.DeepEqual(expected, got) {
 		t.Errorf("First Values: expected %v, got %v", expected, got)
@@ -95,9 +95,57 @@ func TestPrimeFactorization(t *testing.T) {
 		{17 * 31 * 47 * 47, map[int]int{17: 1, 31: 1, 47: 2}},
 	}
 
-	for _, test := range tests {
-		if got := PrimeFactorization(test.n); !reflect.DeepEqual(got, test.expected) {
-			t.Errorf("PrimeFactorization(%d): expected %v, got %v", test.n, test.expected, got)
-		}
+	type implementation struct {
+		name     string
+		function func(int) map[int]int
+	}
+
+	implementations := []implementation{
+		{
+			"Naive",
+			PrimeFactorization,
+		},
+		{
+			"WithCache",
+			PrimeFactorizationWithCache,
+		},
+	}
+
+	for _, implementation := range implementations {
+		t.Run(implementation.name, func(t *testing.T) {
+			for _, test := range tests {
+				if got := PrimeFactorization(test.n); !reflect.DeepEqual(got, test.expected) {
+					t.Errorf("PrimeFactorization(%d): expected %v, got %v", test.n, test.expected, got)
+				}
+			}
+		})
+	}
+}
+
+func TestNextPrime(t *testing.T) {
+	// test that first few primes are as expected
+	var primes []int
+
+	for range 10 {
+		primes = append(primes, NextPrime(primes))
+	}
+
+	expected := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
+
+	if !reflect.DeepEqual(expected, primes) {
+		t.Errorf("first 10: expected %v, got %v", expected, primes)
+	}
+
+	// test that certain values are as expected
+	for range 990 { // up to 1000 total primes
+		primes = append(primes, NextPrime(primes))
+	}
+
+	if primes[99] != 541 {
+		t.Errorf("100th: expected 541, got %v", primes[99])
+	}
+
+	if primes[999] != 7919 {
+		t.Errorf("100th: expected 7919, got %v", primes[999])
 	}
 }

@@ -121,8 +121,89 @@ func PrimeFactorization(num int) map[int]int {
 	return factorization
 }
 
+// NextPrime returns the next larger prime, given a list of the first n primes. Assumes list is sorted in increasing order.
+func NextPrime(primes []int) int {
+	if len(primes) == 0 {
+		return 2
+	}
+	currPrime := primes[len(primes)-1]
+	if currPrime == 2 {
+		return 3
+	}
+
+	nextCandidate := currPrime + 2
+
+	for {
+		isPrime := false
+		maxFactor := int(math.Sqrt(float64(nextCandidate)))
+		for _, prime := range primes {
+			if prime > maxFactor {
+				break
+			}
+
+			if nextCandidate%prime == 0 {
+				isPrime = true
+				break
+			}
+		}
+
+		if !isPrime {
+			return nextCandidate
+		}
+
+		nextCandidate += 2
+	}
+}
+
+var primeFactorCache []int
+
+func PrimeFactorizationWithCache(num int) map[int]int {
+	factorization := make(map[int]int)
+	for _, prime := range primeFactorCache {
+		mult := 0
+		for num%prime == 0 {
+			mult += 1
+			num /= prime
+		}
+
+		if mult > 0 {
+			factorization[prime] = mult
+		}
+
+		if num == 1 {
+			break
+		}
+	}
+
+	if num == 1 {
+		return factorization
+	}
+
+	// else, we exhausted the prime list without finding all the factors. Find more primes until we do.
+	for {
+		nextPrime := NextPrime(primeFactorCache)
+		primeFactorCache = append(primeFactorCache, nextPrime)
+
+		mult := 0
+		for num%nextPrime == 0 {
+			mult += 1
+			num /= nextPrime
+		}
+
+		if mult > 0 {
+			factorization[nextPrime] = mult
+		}
+
+		if num == 1 {
+			break
+		}
+	}
+
+	return factorization
+}
+
 func TotalFactors(num int) int {
-	factorization := PrimeFactorization(num)
+	factorization := PrimeFactorizationWithCache(num)
 	total := 1
 
 	for _, mult := range factorization {

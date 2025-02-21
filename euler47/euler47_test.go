@@ -1,12 +1,9 @@
-package euler12
+package euler47
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
-func TestEuler12(t *testing.T) {
-	answer := 76576500
+func TestEuler47(t *testing.T) {
+	answer := 134043
 
 	type test struct {
 		name     string
@@ -15,8 +12,8 @@ func TestEuler12(t *testing.T) {
 
 	tests := []test{
 		{
-			"Generator",
-			Generator,
+			"Loop",
+			Loop,
 		},
 	}
 
@@ -24,8 +21,6 @@ func TestEuler12(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			if result := tc.function(); result != answer {
 				t.Errorf("expected %v, got %v", answer, result)
-			} else {
-				fmt.Println("huzza")
 			}
 		})
 	}
