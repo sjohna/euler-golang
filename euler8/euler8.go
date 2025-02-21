@@ -1,7 +1,7 @@
 package euler8
 
 import (
-	"euler/utilities"
+	"euler/utility"
 	"io"
 	"os"
 )
@@ -54,7 +54,7 @@ func Naive() int {
 func Generator() int {
 	arr, _ := LoadArray()
 
-	return utilities.Range(0, len(arr)-13).Map(func(n int) int {
-		return utilities.SliceRangeGenerator(arr, n, n+12).Reduce(utilities.Product, 1)
-	}).Reduce(utilities.Max, 0)
+	return utility.Range(0, len(arr)-13).Map(func(n int) int {
+		return utility.SliceRangeGenerator(arr, n, n+12).Reduce(utility.Product, 1)
+	}).Reduce(utility.Max, 0)
 }

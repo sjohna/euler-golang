@@ -1,4 +1,4 @@
-package utilities
+package utility
 
 func NaturalNumbers() Generator[int] {
 	curr := 0

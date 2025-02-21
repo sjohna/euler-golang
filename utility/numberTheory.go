@@ -1,4 +1,4 @@
-package utilities
+package utility
 
 func GCD(a int, b int) int {
 	if a < b {

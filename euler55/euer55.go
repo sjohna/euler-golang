@@ -1,7 +1,7 @@
 package euler55
 
 import (
-	"euler/utilities"
+	"euler/utility"
 )
 
 /*
@@ -24,8 +24,8 @@ func IsLychrel(n int) bool {
 	currVal := n
 
 	for i := 0; i < 50; i++ {
-		currVal = currVal + utilities.Reverse(currVal)
-		if utilities.IsPalindrome(currVal) {
+		currVal = currVal + utility.Reverse(currVal)
+		if utility.IsPalindrome(currVal) {
 			return false
 		}
 	}
@@ -46,7 +46,7 @@ func Loop() int {
 }
 
 func Generators() int {
-	return utilities.Range(1, 10000).
+	return utility.Range(1, 10000).
 		Filter(IsLychrel).
 		Count()
 }

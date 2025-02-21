@@ -1,7 +1,13 @@
 package euler10
 
-import "euler/utilities"
+import "euler/utility"
+
+/*
+https://projecteuler.net/problem=10
+
+Find the sum of all the primes below two million.
+*/
 
 func Generator() int {
-	return utilities.PrimeGenerator().TakeWhile(utilities.LessThan(2_000_000)).Reduce(utilities.Sum, 0)
+	return utility.PrimeGenerator().TakeWhile(utility.LessThan(2_000_000)).Reduce(utility.Sum, 0)
 }

@@ -1,6 +1,6 @@
 package euler1
 
-import "euler/utilities"
+import "euler/utility"
 
 /*
 https://projecteuler.net/problem=1
@@ -19,7 +19,7 @@ func Loop() int {
 }
 
 func Generators() int {
-	return utilities.Range(1, 1000).
+	return utility.Range(1, 999).
 		Filter(func(n int) bool { return n%3 == 0 || n%5 == 0 }).
-		Reduce(utilities.Sum, 0)
+		Reduce(utility.Sum, 0)
 }

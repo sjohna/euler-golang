@@ -1,8 +1,9 @@
-package utilities
+package utility
 
 import "cmp"
 
-// Generator returns a stream of values, and whether the value is valid
+// Generator returns a stream of values, and whether the value is valid.
+// Once a generator becomes invalid (i.e. returns false for its second return value), it should never become valid again.
 type Generator[T any] func() (T, bool)
 type Reduction[T any] func(T, T) T
 

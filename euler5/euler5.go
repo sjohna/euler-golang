@@ -1,7 +1,7 @@
 package euler5
 
 import (
-	"euler/utilities"
+	"euler/utility"
 )
 
 /*
@@ -14,12 +14,12 @@ func LoopLCMFunction() int {
 	lcm := 1
 
 	for i := 2; i <= 20; i++ {
-		lcm = utilities.LCM(lcm, i)
+		lcm = utility.LCM(lcm, i)
 	}
 
 	return lcm
 }
 
 func GeneratorReduce() int {
-	return utilities.Range(1, 20).Reduce(utilities.LCM, 1)
+	return utility.Range(1, 20).Reduce(utility.LCM, 1)
 }
