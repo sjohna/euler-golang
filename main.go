@@ -1,10 +1,10 @@
 package main
 
 import (
-	"euler/euler22"
+	"euler/euler32"
 	"fmt"
 )
 
 func main() {
-	fmt.Println(euler22.Loop())
+	fmt.Println(euler32.Loop())
 }

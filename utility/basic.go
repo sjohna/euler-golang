@@ -25,3 +25,21 @@ func LessThan[T cmp.Ordered](N T) func(T) bool {
 		return n < N
 	}
 }
+
+func Factorial(n int) int {
+	product := 1
+	for i := range n {
+		product *= i + 1
+	}
+
+	return product
+}
+
+func SliceSelect[T any](slice []T, indices ...int) []T {
+	ret := make([]T, len(indices))
+	for retIndex, index := range indices {
+		ret[retIndex] = slice[index]
+	}
+
+	return ret
+}

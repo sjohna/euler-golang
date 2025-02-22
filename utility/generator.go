@@ -137,6 +137,10 @@ func SliceRangeGenerator[T any](slice []T, min, max int) Generator[T] {
 	}
 }
 
+func SliceGenerator[T any](slice []T, min, max int) Generator[T] {
+	return SliceRangeGenerator(slice, 0, len(slice)-1)
+}
+
 func PartialSums[T Number](g Generator[T]) Generator[T] {
 	sum := Default[T]()
 	return func() (T, bool) {
