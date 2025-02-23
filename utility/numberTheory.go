@@ -1,6 +1,6 @@
 package utility
 
-func GCD(a int, b int) int {
+func GCD[T Integer](a T, b T) T {
 	if a < b {
 		a, b = b, a
 	}
@@ -11,6 +11,6 @@ func GCD(a int, b int) int {
 	return a
 }
 
-func LCM(a int, b int) int {
+func LCM[T Integer](a T, b T) T {
 	return (a * b) / GCD(a, b)
 }
