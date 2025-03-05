@@ -3,6 +3,8 @@ package euler12
 import "euler/utility"
 
 /*
+https://projecteuler.net/problem=12
+
 Find the first triangular number with 500 or more factors.
 */
 
