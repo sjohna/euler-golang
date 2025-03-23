@@ -137,7 +137,7 @@ func SliceRangeGenerator[T any](slice []T, min, max int) Generator[T] {
 	}
 }
 
-func SliceGenerator[T any](slice []T, min, max int) Generator[T] {
+func SliceGenerator[T any](slice []T) Generator[T] {
 	return SliceRangeGenerator(slice, 0, len(slice)-1)
 }
 

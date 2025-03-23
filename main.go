@@ -1,10 +1,10 @@
 package main
 
 import (
-	"euler/euler14"
+	"euler/euler78"
 	"fmt"
 )
 
 func main() {
-	fmt.Println(euler14.RecursiveWithCache())
+	fmt.Println(euler78.DynamicProgramming())
 }
