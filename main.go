@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(euler78.DynamicProgramming())
+	fmt.Println(euler78.EulersPentagonalNumberTheorem())
 }

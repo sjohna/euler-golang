@@ -10,10 +10,11 @@ func TestEuler78(t *testing.T) {
 		function func() int
 	}
 
+	// not testing the dynamic programming implementation, because it takes ~45 seconds
 	tests := []test{
 		{
-			"DynamicProgramming",
-			DynamicProgramming,
+			"EulersPentagonalNumberTheorem",
+			EulersPentagonalNumberTheorem,
 		},
 	}
 
