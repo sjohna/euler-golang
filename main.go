@@ -1,10 +1,10 @@
 package main
 
 import (
-	"euler/euler78"
+	"euler/euler92"
 	"fmt"
 )
 
 func main() {
-	fmt.Println(euler78.EulersPentagonalNumberTheorem())
+	fmt.Println(euler92.Recursively())
 }
