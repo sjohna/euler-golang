@@ -43,3 +43,12 @@ func SliceSelect[T any](slice []T, indices ...int) []T {
 
 	return ret
 }
+
+func Concat(a, b int) int {
+	magnitude := 10
+	for magnitude < b {
+		magnitude *= 10
+	}
+
+	return a*magnitude + b
+}
