@@ -92,6 +92,27 @@ func (g Generator[T]) TakeWhile(cond func(T) bool) Generator[T] {
 	}
 }
 
+func (g Generator[T]) SkipWhile(cond func(T) bool) Generator[T] {
+	doneSkipping := false
+	return func() (T, bool) {
+		next, ok := g()
+
+		for !doneSkipping {
+			if !ok {
+				return Default[T](), false
+			}
+
+			if !cond(next) {
+				doneSkipping = true
+			} else {
+				next, ok = g()
+			}
+		}
+
+		return next, ok
+	}
+}
+
 func (g Generator[T]) Filter(cond func(T) bool) Generator[T] {
 	return func() (T, bool) {
 		for {
