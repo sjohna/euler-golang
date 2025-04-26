@@ -1,7 +1,7 @@
 package euler51
 
 import (
-	"euler/utility"
+	"euler/utility/prime"
 	"strconv"
 	"strings"
 )
@@ -14,7 +14,7 @@ func Iterate() int {
 
 	templates := make(map[string]*Entry)
 
-	primes := utility.PrimeGenerator().Infinite()
+	primes := prime.NaiveGenerator().Infinite()
 
 	for {
 		currPrime := primes()

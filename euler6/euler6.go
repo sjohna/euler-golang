@@ -1,6 +1,9 @@
 package euler6
 
-import "euler/utility"
+import (
+	"euler/utility"
+	"euler/utility/sequence"
+)
 
 /*
 https://projecteuler.net/problem=6
@@ -9,8 +12,8 @@ What's the difference between the square of the sum and the sum of the squares o
 */
 
 func Generators() int {
-	sumOfSquares := utility.Range(1, 100).Map(utility.Square).Reduce(utility.Sum, 0)
-	squareOfSum := utility.Square(utility.Range(1, 100).Reduce(utility.Sum, 0))
+	sumOfSquares := sequence.Range(1, 100).Map(utility.Square).Reduce(utility.Sum, 0)
+	squareOfSum := utility.Square(sequence.Range(1, 100).Reduce(utility.Sum, 0))
 
 	return squareOfSum - sumOfSquares
 }

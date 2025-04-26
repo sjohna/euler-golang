@@ -1,6 +1,8 @@
 package euler47
 
-import "euler/utility"
+import (
+	"euler/utility/prime"
+)
 
 /*
 https://projecteuler.net/problem=47
@@ -12,7 +14,7 @@ func Loop() int {
 	curr := 2
 	streak := 0
 	for {
-		factorization := utility.PrimeFactorizationWithCache(curr)
+		factorization := prime.PrimeFactorizationWithCache(curr)
 		if len(factorization) == 4 {
 			streak += 1
 		} else {

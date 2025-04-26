@@ -1,4 +1,4 @@
-package utility
+package integers
 
 func Triangular(n int) int {
 	return (n * (n + 1)) / 2
@@ -18,8 +18,4 @@ func Heptagonal(n int) int {
 
 func Octagonal(n int) int {
 	return n * (3*n - 2)
-}
-
-func TriangularNumbers() Generator[int] {
-	return PartialSums(NaturalNumbers())
 }

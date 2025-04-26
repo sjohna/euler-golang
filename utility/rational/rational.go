@@ -1,6 +1,9 @@
-package utility
+package rational
 
-import "fmt"
+import (
+	"euler/utility/integers"
+	"fmt"
+)
 
 type Rational struct {
 	Numerator   int64
@@ -12,9 +15,9 @@ func (r Rational) ToFloat() float64 {
 }
 
 func (r Rational) Plus(other Rational) Rational {
-	commonDenominator := LCM(r.Denominator, other.Denominator)
+	commonDenominator := integers.LCM(r.Denominator, other.Denominator)
 
-	denominatorGCD := GCD(r.Denominator, other.Denominator)
+	denominatorGCD := integers.GCD(r.Denominator, other.Denominator)
 
 	numerator := r.Numerator*(other.Denominator/denominatorGCD) + other.Numerator*(r.Denominator/denominatorGCD)
 
@@ -58,7 +61,7 @@ func (r Rational) ToString() string {
 }
 
 func (r Rational) ToLowest() Rational {
-	commonFactors := GCD(r.Numerator, r.Denominator)
+	commonFactors := integers.GCD(r.Numerator, r.Denominator)
 
 	return Rational{
 		Numerator:   r.Numerator / commonFactors,

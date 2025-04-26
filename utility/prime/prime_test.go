@@ -1,11 +1,12 @@
-package utility
+package prime
 
 import (
+	"euler/utility/generator"
 	"reflect"
 	"testing"
 )
 
-func testPrimeGeneratorFirstValues(t *testing.T, gen Generator[int]) {
+func testPrimeGeneratorFirstValues(t *testing.T, gen generator.Generator[int]) {
 	expected := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
 	got := gen.Take(10).ToSlice()
 
@@ -14,7 +15,7 @@ func testPrimeGeneratorFirstValues(t *testing.T, gen Generator[int]) {
 	}
 }
 
-func testPrimeGenerator100th(t *testing.T, gen Generator[int]) {
+func testPrimeGenerator100th(t *testing.T, gen generator.Generator[int]) {
 	expected := 541
 	got := gen.Nth(100)
 
@@ -23,7 +24,7 @@ func testPrimeGenerator100th(t *testing.T, gen Generator[int]) {
 	}
 }
 
-func testPrimeGenerator1000th(t *testing.T, gen Generator[int]) {
+func testPrimeGenerator1000th(t *testing.T, gen generator.Generator[int]) {
 	expected := 7919
 	got := gen.Nth(1000)
 
@@ -33,15 +34,15 @@ func testPrimeGenerator1000th(t *testing.T, gen Generator[int]) {
 }
 
 func TestPrimeGenerator(t *testing.T) {
-	testPrimeGeneratorFirstValues(t, PrimeGenerator())
-	testPrimeGenerator100th(t, PrimeGenerator())
-	testPrimeGenerator1000th(t, PrimeGenerator())
+	testPrimeGeneratorFirstValues(t, NaiveGenerator())
+	testPrimeGenerator100th(t, NaiveGenerator())
+	testPrimeGenerator1000th(t, NaiveGenerator())
 }
 
 func TestCachedPrimeGenerator(t *testing.T) {
-	testPrimeGeneratorFirstValues(t, CachedPrimeGenerator())
-	testPrimeGenerator100th(t, CachedPrimeGenerator())
-	testPrimeGenerator1000th(t, CachedPrimeGenerator())
+	testPrimeGeneratorFirstValues(t, CachedGenerator())
+	testPrimeGenerator100th(t, CachedGenerator())
+	testPrimeGenerator1000th(t, CachedGenerator())
 }
 
 func TestIsPrime(t *testing.T) {
@@ -146,6 +147,6 @@ func TestNextPrime(t *testing.T) {
 	}
 
 	if primes[999] != 7919 {
-		t.Errorf("100th: expected 7919, got %v", primes[999])
+		t.Errorf("1000th: expected 7919, got %v", primes[999])
 	}
 }

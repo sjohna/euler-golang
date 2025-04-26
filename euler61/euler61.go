@@ -2,6 +2,9 @@ package euler61
 
 import (
 	u "euler/utility"
+	"euler/utility/generator"
+	"euler/utility/integers"
+	"euler/utility/sequence"
 	"fmt"
 	"slices"
 )
@@ -11,12 +14,12 @@ func Adjacent(a, b int) bool {
 }
 
 func SolveIt() int {
-	triangles := u.NaturalNumbers().Map(u.Triangular).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
-	squares := u.NaturalNumbers().Map(u.Square[int]).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
-	pentagons := u.NaturalNumbers().Map(u.Pentagonal).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
-	hexagons := u.NaturalNumbers().Map(u.Hexagonal).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
-	heptagons := u.NaturalNumbers().Map(u.Heptagonal).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
-	octagons := u.NaturalNumbers().Map(u.Octagonal).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
+	triangles := sequence.NaturalNumbers().Map(integers.Triangular).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
+	squares := sequence.NaturalNumbers().Map(u.Square[int]).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
+	pentagons := sequence.NaturalNumbers().Map(integers.Pentagonal).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
+	hexagons := sequence.NaturalNumbers().Map(integers.Hexagonal).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
+	heptagons := sequence.NaturalNumbers().Map(integers.Heptagonal).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
+	octagons := sequence.NaturalNumbers().Map(integers.Octagonal).SkipWhile(u.LessThan(1000)).TakeWhile(u.LessThan(10000)).ToSlice()
 
 	//fmt.Println(len(triangles), len(squares), len(pentagons), len(hexagons), len(heptagons), len(octagons))
 
@@ -67,7 +70,7 @@ func Recurse(numLists [][]int, nums []int) int {
 	if len(numLists) == 0 {
 		if Adjacent(lastNum, nums[0]) {
 			fmt.Println(nums)
-			return u.SliceGenerator(nums).Reduce(u.Sum, 0)
+			return generator.Slice(nums).Reduce(u.Sum, 0)
 		} else {
 			return -1
 		}

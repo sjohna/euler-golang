@@ -2,6 +2,7 @@ package euler2
 
 import (
 	"euler/utility"
+	"euler/utility/sequence"
 )
 
 /*
@@ -11,7 +12,7 @@ Find the sum of the even-valued terms of the Fibonacci sequence below four milli
 */
 
 func GeneratorWithLoop() int {
-	nextFib := utility.FibonacciSequence().Infinite()
+	nextFib := sequence.Fibonacci().Infinite()
 	currFib := nextFib()
 	sum := 0
 	for currFib < 4_000_000 {
@@ -25,7 +26,7 @@ func GeneratorWithLoop() int {
 }
 
 func PureGenerator() int {
-	return utility.FibonacciSequence().
+	return sequence.Fibonacci().
 		TakeWhile(utility.LessThan(4_000_000)).
 		Filter(func(n int) bool { return n%2 == 0 }).
 		Reduce(utility.Sum, 0)

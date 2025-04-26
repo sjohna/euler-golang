@@ -1,4 +1,8 @@
-package utility
+package generator
+
+import (
+	"euler/utility/types"
+)
 
 // Generator returns a stream of values, and whether the value is valid.
 // Once a generator becomes invalid (i.e. returns false for its second return value), it should never become valid again.
@@ -56,7 +60,7 @@ func (g Generator[T]) Count() int {
 	return count
 }
 
-// Map needs to go to the same type, because Go's type system can't really handle switching the type generically here...
+// Map needs to go to the same types, because Go's types system can't really handle switching the types generically here...
 func (g Generator[T]) Map(mapFunc func(T) T) Generator[T] {
 	return func() (T, bool) {
 		next, ok := g()
@@ -144,11 +148,11 @@ func (g Generator[T]) NextValue() T {
 	return next
 }
 
-func SliceRangeGenerator[T any](slice []T, min, max int) Generator[T] {
-	curr := min
+func Slice[T any](slice []T) Generator[T] {
+	curr := 0
 
 	return func() (T, bool) {
-		if curr > max {
+		if curr >= len(slice) {
 			return Default[T](), false
 		}
 
@@ -158,11 +162,7 @@ func SliceRangeGenerator[T any](slice []T, min, max int) Generator[T] {
 	}
 }
 
-func SliceGenerator[T any](slice []T) Generator[T] {
-	return SliceRangeGenerator(slice, 0, len(slice)-1)
-}
-
-func PartialSums[T Number](g Generator[T]) Generator[T] {
+func PartialSums[T types.Number](g Generator[T]) Generator[T] {
 	sum := Default[T]()
 	return func() (T, bool) {
 		next, ok := g()

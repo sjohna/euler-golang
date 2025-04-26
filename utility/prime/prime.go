@@ -1,8 +1,11 @@
-package utility
+package prime
 
-import "math"
+import (
+	"euler/utility/generator"
+	"math"
+)
 
-func PrimeGenerator() Generator[int] {
+func NaiveGenerator() generator.Generator[int] {
 	curr := 2
 
 	return func() (int, bool) {
@@ -39,7 +42,7 @@ func PrimeGenerator() Generator[int] {
 	}
 }
 
-func CachedPrimeGenerator() Generator[int] {
+func CachedGenerator() generator.Generator[int] {
 	curr := 2
 	primes := make([]int, 0)
 
@@ -101,7 +104,7 @@ func IsPrime(num int) bool {
 // PrimeFactorization returns a map of the multiplicities of each prime in the factorization
 func PrimeFactorization(num int) map[int]int {
 	// this regenerates all the primes again each time. Not ideal
-	primes := CachedPrimeGenerator().Infinite()
+	primes := CachedGenerator().Infinite()
 
 	factorization := make(map[int]int)
 	for num > 1 {

@@ -1,7 +1,10 @@
 package euler41
 
 import (
-	"euler/utility"
+	"euler/utility/combinatorics"
+	"euler/utility/integers"
+	"euler/utility/prime"
+	"euler/utility/slice"
 	"strconv"
 	"strings"
 )
@@ -12,12 +15,12 @@ func Loop() int {
 	largestPrime := 0
 
 	for n := 9; n > 0; n-- {
-		numPermutations := utility.Factorial(n)
+		numPermutations := integers.Factorial(n)
 		for k := range numPermutations {
-			perm := utility.KthPermutationOfNItems(n, k+1)
-			num, _ := strconv.Atoi(strings.Join(utility.SliceSelect(digitStrings, perm...), ""))
+			perm := combinatorics.KthPermutationOfNItems(n, k+1)
+			num, _ := strconv.Atoi(strings.Join(slice.Select(digitStrings, perm...), ""))
 
-			if utility.IsPrime(num) && num > largestPrime {
+			if prime.IsPrime(num) && num > largestPrime {
 				largestPrime = num
 			}
 		}

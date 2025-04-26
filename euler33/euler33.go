@@ -1,6 +1,8 @@
 package euler33
 
-import "euler/utility"
+import (
+	"euler/utility/integers"
+)
 
 func Loop() int {
 	numeratorProduct := 1
@@ -51,5 +53,5 @@ func Loop() int {
 		}
 	}
 
-	return denominatorProduct / utility.GCD(numeratorProduct, denominatorProduct)
+	return denominatorProduct / integers.GCD(numeratorProduct, denominatorProduct)
 }

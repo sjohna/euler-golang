@@ -1,4 +1,4 @@
-package utility
+package combinatorics
 
 import "fmt"
 

@@ -1,7 +1,7 @@
 package euler4
 
 import (
-	"euler/utility"
+	"euler/utility/integers"
 	"sort"
 )
 
@@ -23,7 +23,7 @@ func Loops() int {
 	sort.Sort(sort.Reverse(sort.IntSlice(products)))
 
 	for i := 0; i < len(products); i++ {
-		if utility.IsPalindrome(products[i]) {
+		if integers.IsPalindrome(products[i]) {
 			return products[i]
 		}
 	}

@@ -1,7 +1,7 @@
 package euler62
 
 import (
-	"euler/utility"
+	"euler/utility/sequence"
 	"slices"
 )
 
@@ -31,7 +31,7 @@ func SolveIt() int {
 		return n * n * n
 	}
 
-	cubeGen := utility.NaturalNumbers().Map(cube).Infinite()
+	cubeGen := sequence.NaturalNumbers().Map(cube).Infinite()
 
 	sortedMap := make(map[int][]int)
 

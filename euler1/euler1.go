@@ -1,6 +1,9 @@
 package euler1
 
-import utility "euler/utility"
+import (
+	utility "euler/utility"
+	"euler/utility/sequence"
+)
 
 /*
 https://projecteuler.net/problem=1
@@ -19,7 +22,7 @@ func Loop() int {
 }
 
 func Generators() int {
-	return utility.Range(1, 999).
+	return sequence.Range(1, 999).
 		Filter(func(n int) bool { return n%3 == 0 || n%5 == 0 }).
 		Reduce(utility.Sum, 0)
 }

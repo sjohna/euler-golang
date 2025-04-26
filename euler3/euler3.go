@@ -1,7 +1,7 @@
 package euler3
 
 import (
-	"euler/utility"
+	"euler/utility/prime"
 )
 
 /*
@@ -12,7 +12,7 @@ What is the largest prime factor of 600851475143?
 
 func GeneratorWithLoop() int {
 	curr := 600851475143
-	nextPrime := utility.PrimeGenerator().Infinite()
+	nextPrime := prime.NaiveGenerator().Infinite()
 	var currPrime int
 
 	for curr > 1 {

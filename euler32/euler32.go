@@ -1,7 +1,9 @@
 package euler32
 
 import (
-	"euler/utility"
+	"euler/utility/combinatorics"
+	"euler/utility/integers"
+	"euler/utility/slice"
 	"strconv"
 	"strings"
 )
@@ -19,12 +21,12 @@ What is the sum of all products whose multiplicand/multiplier/product identity i
 func Loop() int {
 	products := make(map[int]bool)
 
-	numPermutations := utility.Factorial(9)
+	numPermutations := integers.Factorial(9)
 
 	digitStrings := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
 	for i := range numPermutations {
-		permutation := utility.KthPermutationOfNItems(9, i+1)
+		permutation := combinatorics.KthPermutationOfNItems(9, i+1)
 
 		// check each place we can put the 'x' and '='
 
@@ -42,9 +44,9 @@ func Loop() int {
 					continue
 				}
 
-				multiplicand, _ := strconv.Atoi(strings.Join(utility.SliceSelect(digitStrings, multiplicandSlice...), ""))
-				multiplier, _ := strconv.Atoi(strings.Join(utility.SliceSelect(digitStrings, multiplierSlice...), ""))
-				product, _ := strconv.Atoi(strings.Join(utility.SliceSelect(digitStrings, productSlice...), ""))
+				multiplicand, _ := strconv.Atoi(strings.Join(slice.Select(digitStrings, multiplicandSlice...), ""))
+				multiplier, _ := strconv.Atoi(strings.Join(slice.Select(digitStrings, multiplierSlice...), ""))
+				product, _ := strconv.Atoi(strings.Join(slice.Select(digitStrings, productSlice...), ""))
 
 				if multiplicand*multiplier == product {
 					products[product] = true

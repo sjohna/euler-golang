@@ -2,7 +2,7 @@ package euler46
 
 import (
 	"container/heap"
-	"euler/utility"
+	"euler/utility/prime"
 )
 
 /*
@@ -49,7 +49,7 @@ func (l *CandidateList) Pop() any {
 }
 
 func Heap() int {
-	oddPrimes := utility.CachedPrimeGenerator().Skip(1).Infinite()
+	oddPrimes := prime.CachedGenerator().Skip(1).Infinite()
 
 	frontier := &CandidateList{}
 
