@@ -19,3 +19,8 @@ type Float interface {
 type Number interface {
 	Integer | Float
 }
+
+type KeyValue[K comparable, V any] struct {
+	Key   K
+	Value V
+}
