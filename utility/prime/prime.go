@@ -215,3 +215,49 @@ func TotalFactors(num int) int {
 
 	return total
 }
+
+// TODO: test
+func MultiplyPrimeFactorizations(a, b map[int]int) map[int]int {
+	product := make(map[int]int)
+	for prime, mult := range a {
+		product[prime] += mult
+	}
+
+	for prime, mult := range b {
+		product[prime] += mult
+	}
+
+	return product
+}
+
+func SievePrimesUpTo(n int) generator.Generator[int] {
+	sieve := make([]bool, n+1)
+	sieve[0] = true
+	sieve[1] = true
+
+	startIndex := 0
+
+	return func() (int, bool) {
+		// find next prime
+		for startIndex < len(sieve) {
+			if !sieve[startIndex] {
+				break
+			}
+			startIndex++
+		}
+
+		if startIndex >= len(sieve) {
+			return 0, false
+		}
+
+		nextPrime := startIndex
+
+		for i := startIndex * 2; i < len(sieve); i += startIndex {
+			sieve[i] = true
+		}
+
+		startIndex++
+		return nextPrime, true
+	}
+
+}

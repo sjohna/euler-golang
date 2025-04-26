@@ -33,16 +33,47 @@ func testPrimeGenerator1000th(t *testing.T, gen generator.Generator[int]) {
 	}
 }
 
-func TestPrimeGenerator(t *testing.T) {
+func TestNaiveGenerator(t *testing.T) {
 	testPrimeGeneratorFirstValues(t, NaiveGenerator())
 	testPrimeGenerator100th(t, NaiveGenerator())
 	testPrimeGenerator1000th(t, NaiveGenerator())
 }
 
-func TestCachedPrimeGenerator(t *testing.T) {
+func TestCachedGenerator(t *testing.T) {
 	testPrimeGeneratorFirstValues(t, CachedGenerator())
 	testPrimeGenerator100th(t, CachedGenerator())
 	testPrimeGenerator1000th(t, CachedGenerator())
+}
+
+func TestSievePrimesUpTo(t *testing.T) {
+	testPrimeGeneratorFirstValues(t, SievePrimesUpTo(100))
+	testPrimeGenerator100th(t, SievePrimesUpTo(1000))
+	testPrimeGenerator1000th(t, SievePrimesUpTo(10000))
+}
+
+func TestPerformanceOfPrimeGenerators(t *testing.T) {
+	hundredThousandthPrime := 1_299_709
+	millionthPrime := 15_485_863
+	t.Run("NaivePrimeGeneratorPerformance", func(t *testing.T) { // about .5 sec on my 2016 machine to find the 100,000th prime
+		genPrime := NaiveGenerator().Nth(100_000)
+		if genPrime != hundredThousandthPrime {
+			t.Errorf("Millionth prime for naive generator: expected %d, got %d", millionthPrime, genPrime)
+		}
+	})
+
+	t.Run("CachedPrimeGeneratorPerformance", func(t *testing.T) { // about .2 sec on my 2016 machine to find the 100,000th prime
+		genPrime := CachedGenerator().Nth(100_000)
+		if genPrime != hundredThousandthPrime {
+			t.Errorf("Millionth prime for cached generator: expected %d, got %d", millionthPrime, genPrime)
+		}
+	})
+
+	t.Run("SievePrimeGeneratorPerformance", func(t *testing.T) { // about .2 sec on my 2016 machine to find the millionth prime
+		genPrime := SievePrimesUpTo(millionthPrime).Nth(1_000_000)
+		if genPrime != millionthPrime {
+			t.Errorf("Millionth prime for sieve generator: expected %d, got %d", millionthPrime, genPrime)
+		}
+	})
 }
 
 func TestIsPrime(t *testing.T) {
