@@ -2,9 +2,9 @@ package euler61
 
 import (
 	u "euler/utility"
-	"euler/utility/generator"
 	"euler/utility/integers"
 	"euler/utility/sequence"
+	"euler/utility/slice"
 	"fmt"
 	"slices"
 )
@@ -70,7 +70,7 @@ func Recurse(numLists [][]int, nums []int) int {
 	if len(numLists) == 0 {
 		if Adjacent(lastNum, nums[0]) {
 			fmt.Println(nums)
-			return generator.Slice(nums).Reduce(u.Sum, 0)
+			return slice.Sum(nums)
 		} else {
 			return -1
 		}

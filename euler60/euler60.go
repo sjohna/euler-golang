@@ -1,18 +1,21 @@
 package euler60
 
 import (
-	"euler/utility"
-	"euler/utility/generator"
 	"euler/utility/integers"
 	"euler/utility/prime"
+	"euler/utility/slice"
 	"slices"
 )
 
 // slow: 3-5 minutes
 func SolveIt() int {
+	return FindCliqueSum(5)
+}
+
+func FindCliqueSum(size int) int {
 	cliques := make([][]int, 0)
 	primes := make(map[int]bool)
-	primeGen := prime.NaiveGenerator().Infinite()
+	primeGen := prime.SievePrimesUpTo(100_000_000).Infinite() // kind of a cheat, because I know from solving this how high I need to go
 	nextPrimeMap := make(map[int]int)
 	currPrime := -1
 	maxPrime := -1
@@ -49,8 +52,8 @@ func SolveIt() int {
 
 			if allWork {
 				newClique := append(slices.Clone(c), nextPrime)
-				if len(newClique) == 5 {
-					return generator.Slice(newClique).Reduce(utility.Sum, 0)
+				if len(newClique) == size {
+					return slice.Sum(newClique)
 				}
 				newCliques = append(newCliques, newClique)
 			}

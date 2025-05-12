@@ -14,7 +14,7 @@ func Iterate() int {
 
 	templates := make(map[string]*Entry)
 
-	primes := prime.NaiveGenerator().Infinite()
+	primes := prime.CachedGenerator().Infinite()
 
 	for {
 		currPrime := primes()
